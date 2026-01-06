@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Grid Layout</title>
+  <style>
+    :root{
+      --bg: #f6ecec;
+      --border: #e07b7b;
+      --text: #222;
+      --gap: 14px;
+      --radius: 2px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* page wrapper */
+    .wrap{
+      width: min(980px, 92vw);
+      margin: 24px auto;
+      padding: 10px;
+    }
+
+    /* grid container */
+    .layout{
+      display: grid;
+      gap: var(--gap);
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "nav"
+        "main"
+        "sidebar"
+        "ads"
+        "footer";
+    }
+
+    /* boxes */
+    .box{
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.25);
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    header{ grid-area: header; min-height: 42px; }
+    nav{ grid-area: nav; min-height: 42px; }
+    main{ grid-area: main; min-height: 260px; }
+    aside.sidebar{ grid-area: sidebar; min-height: 42px; }
+    aside.ads{ grid-area: ads; min-height: 42px; }
+    footer{ grid-area: footer; min-height: 42px; }
+
+    /* Tablet */
+    @media (min-width: 700px){
+      .layout{
+        grid-template-columns: 170px 1fr;
+        grid-template-areas:
+          "header  header"
+          "nav     nav"
+          "sidebar main"
+          "ads     footer";
+      }
+      main{ min-height: 320px; }
+      aside.sidebar{ min-height: 320px; }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px){
+      .layout{
+        grid-template-columns: 190px 1fr 170px;
+        grid-template-areas:
+          "header  header     header"
+          "sidebar nav        ads"
+          "sidebar main       ads"
+          "footer  footer     footer";
+      }
+      main{ min-height: 360px; }
+      aside.sidebar{ min-height: 430px; }
+      aside.ads{ min-height: 430px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="layout">
+      <header class="box">This is header</header>
+
+      <nav class="box">here is how you navigate</nav>
+
+      <main class="box">
+        the main content of the webpage is here, let it be image or paragraph or anything
+      </main>
+
+      <aside class="box sidebar">here is where all side bar stuff is</aside>
+
+      <aside class="box ads">the most annoying part of internet, ads</aside>
+
+      <footer class="box">all rights recieved for practice</footer>
+    </div>
+  </div>
+</body>
+</html>
